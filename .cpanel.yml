@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/nilootec/uagahi-backend-api/
+    - /bin/cp -R dist $DEPLOYPATH
