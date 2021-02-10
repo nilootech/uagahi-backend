@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { CreateUserInput } from './inputs/create-user.input';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { AuthCredentialDto } from '../../auth/dto/auth-credential.dto';
+import { AuthCredentialDto } from '../../auth/jwt/dto/auth-credential.dto';
 import has = Reflect.has;
 
 @Injectable()

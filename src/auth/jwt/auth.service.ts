@@ -1,8 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UserService } from '../models/user/user.service';
+import { UserService } from '../../models/user/user.service';
 import { JwtService } from '@nestjs/jwt';
-import { CreateUserInput } from '../models/user/inputs/create-user.input';
-import { User } from '../models/user/user.schema';
+import { CreateUserInput } from '../../models/user/inputs/create-user.input';
+import { User } from '../../models/user/user.schema';
 import { AuthCredentialDto } from './dto/auth-credential.dto';
 import { JwtPayload } from './jwt-payload';
 
