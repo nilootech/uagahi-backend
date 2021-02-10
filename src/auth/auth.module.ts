@@ -30,7 +30,6 @@ import { UserService } from '../models/user/user.service';
   exports: [
     JwtStrategy,
     PassportModule,
-
   ],
 
 })
