@@ -16,10 +16,7 @@ const ENV = process.env.NODE_ENV;
 @Module({
   imports: [
     WinstonModule.forRoot({
-      transports: [
-        new winston.transports.Console(),
-        new winston.transports.File({ filename: 'combined.log' })
-      ],
+      transports: [new winston.transports.Console(), new winston.transports.File({ filename: 'combined.log' })],
     }),
     ConfigModule.forRoot({
       load: [configuration],
@@ -42,5 +39,4 @@ const ENV = process.env.NODE_ENV;
   controllers: [GoogleController],
   providers: [GoogleService],
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -7,14 +7,12 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(
-    private userService: UserService, private readonly config: ConfigService) {
+  constructor(private userService: UserService, private readonly config: ConfigService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: config.get<string>('secret.key'),
     });
   }
-
 
   async validate(payload: JwtPayload) {
     const { userId } = payload;

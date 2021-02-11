@@ -22,15 +22,10 @@ import { UserModule } from '../../models/user/user.module';
       }),
       inject: [ConfigService],
     }),
-    UserModule
+    UserModule,
   ],
   providers: [AuthService, JwtStrategy],
   controllers: [AuthController],
-  exports: [
-    JwtStrategy,
-    PassportModule,
-  ],
-
+  exports: [JwtStrategy, PassportModule],
 })
-export class AuthModule {
-}
+export class AuthModule {}
