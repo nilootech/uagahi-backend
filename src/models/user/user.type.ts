@@ -9,11 +9,17 @@ export class UserType {
   name: string;
 
   @Field()
+  password: string;
+
+  @Field()
   birthDate: Date;
 
   @Field()
   userName: string;
 
   @Field()
-  token: string;
+  accessToken: string;
+
+  @Field()
+  refreshToken: string;
 }

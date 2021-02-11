@@ -5,6 +5,7 @@ import { CreateUserInput } from '../../models/user/inputs/create-user.input';
 import { User } from '../../models/user/user.schema';
 import { AuthCredentialDto } from './dto/auth-credential.dto';
 import { JwtPayload } from './jwt-payload';
+import { AuthLoginDto } from './dto/auth-login.dto';
 
 @Injectable()
 export class AuthService {
@@ -13,15 +14,14 @@ export class AuthService {
     private jwtService: JwtService) {
   }
 
-  async signIn(authCredentialDto: AuthCredentialDto): Promise<{ accessToken: string }> {
-    const userName = await this.userService.validateUserPassword(authCredentialDto);
-    if (!userName) {
-      throw new UnauthorizedException();
-    }
-    const payload: JwtPayload = { userName };
-    const accessToken = await this.jwtService.signAsync(payload);
-    return { accessToken };
-  }
+  async signIn(authCredentialDto: AuthCredentialDto): Promise<AuthLoginDto> {
+    const userId = await this.userService.validateUserPassword(authCredentialDto);
+    const payload: JwtPayload = { userId };
+    const accessToken = await this.jwtService.signAsync(payload, { expiresIn: 900000 });
+    const refreshToken = await this.jwtService.signAsync(payload, { expiresIn: 6.048e+8 });
+    await this.userService.signInComplete({ accessToken, refreshToken, userId });
 
+    return { accessToken, refreshToken };
+  }
 
 }

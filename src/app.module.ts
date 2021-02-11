@@ -1,20 +1,26 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { UserModule } from './models/user/user.module';
 import { AuthModule } from './auth/jwt/auth.module';
 import { GoogleController } from './auth/google/google.controller';
 import { GoogleService } from './auth/google/google.service';
 import { GoogleModule } from './auth/google/google.module';
+import { WinstonModule } from 'nest-winston';
+import * as winston from 'winston';
 import configuration from './config/configuration';
 
 const ENV = process.env.NODE_ENV;
 
 @Module({
   imports: [
+    WinstonModule.forRoot({
+      transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({ filename: 'combined.log' })
+      ],
+    }),
     ConfigModule.forRoot({
       load: [configuration],
       cache: true,
@@ -33,8 +39,8 @@ const ENV = process.env.NODE_ENV;
     AuthModule,
     GoogleModule,
   ],
-  controllers: [AppController, GoogleController],
-  providers: [AppService, GoogleService],
+  controllers: [GoogleController],
+  providers: [GoogleService],
 })
 export class AppModule {
 }

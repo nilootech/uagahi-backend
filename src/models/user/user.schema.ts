@@ -1,3 +1,4 @@
+import * as mongoose from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
@@ -7,8 +8,8 @@ export type UserDocument = User & Document;
 @Schema()
 export class User {
 
-  @Prop()
-  id: string;
+  @Prop({ type: mongoose.Schema.Types.ObjectId })
+  _id: string;
 
   @Prop()
   name: string;
@@ -16,7 +17,7 @@ export class User {
   @Prop({ required: true })
   password: string;
 
-  @Prop()
+  @Prop({ required: true })
   salt: string;
 
   @Prop()
@@ -28,7 +29,10 @@ export class User {
   userName: string;
 
   @Prop()
-  token: string;
+  accessToken: string;
+
+  @Prop()
+  refreshToken: string;
 
 }
 
