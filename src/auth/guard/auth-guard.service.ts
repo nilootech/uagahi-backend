@@ -28,10 +28,7 @@ export class GqlAuthGuard extends AuthGuard('jwt') {
     }
 
     const token = authHeader.replace(/^Bearer\s+/, '');
-    const verifyToken = await this.userService.verifyToken(token);
-    if (!verifyToken) {
-      throw new UnauthorizedException('token is not valid');
-    }
+    await this.userService.getUserByAccessToken(token);
     return true;
   }
 }

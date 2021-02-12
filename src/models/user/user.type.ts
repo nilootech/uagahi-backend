@@ -13,7 +13,7 @@ export class UserType {
   birthDate: Date;
 
   @Field()
-  userName: string;
+  email: string;
 
   @Field(() => [Role])
   roles: Role[];

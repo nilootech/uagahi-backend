@@ -1,3 +1,4 @@
 // Custom Logger
 // Role Users
-// TODO Refresh Token
+// Refresh Token
+// TODO Complete User Schema

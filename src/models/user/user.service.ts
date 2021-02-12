@@ -25,12 +25,12 @@ export class UserService {
   ) {}
 
   async signUp(createUserInput: CreateUserInput): Promise<User> {
-    const { name, birthDate, userName, password } = createUserInput;
+    const { name, birthDate, email, password } = createUserInput;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     createUserInput.password = hashedPassword;
     const user = new User();
-    user.userName = userName;
+    user.email = email;
     user.salt = salt;
     user.password = hashedPassword;
     user.birthDate = birthDate;
@@ -55,8 +55,8 @@ export class UserService {
   async validateUserPassword(
     authCredentialDto: AuthCredentialDto,
   ): Promise<string> {
-    const { password, username } = authCredentialDto;
-    const user = await this.getUserByUserName(username);
+    const { password, email } = authCredentialDto;
+    const user = await this.getUserByEmail(email);
     const hash = await bcrypt.hash(password, user.salt);
     if (hash === user.password) {
       return user._id;
@@ -68,8 +68,8 @@ export class UserService {
     return this.userModel.find().exec();
   }
 
-  async getUserByUserName(userName: string): Promise<UserDocument> {
-    const user = await this.userModel.findOne({ userName });
+  async getUserByEmail(email: string): Promise<UserDocument> {
+    const user = await this.userModel.findOne({ email });
     if (!user) {
       throw new UnauthorizedException('user not found');
     }
@@ -92,6 +92,30 @@ export class UserService {
       },
     });
     return await jwtService.verifyAsync(authToken, { ignoreExpiration: false });
+  }
+
+  async getUserByAccessToken(accessToken: string): Promise<UserDocument> {
+    const verifyToken = await this.verifyToken(accessToken);
+    if (!verifyToken) {
+      throw new UnauthorizedException('invalid access token');
+    }
+    const user = await this.userModel.findOne({ accessToken });
+    if (!user) {
+      throw new UnauthorizedException('invalid access token');
+    }
+    return user;
+  }
+
+  async getUserByRefreshToken(refreshToken: string): Promise<UserDocument> {
+    const verifyToken = await this.verifyToken(refreshToken);
+    if (!verifyToken) {
+      throw new UnauthorizedException('invalid refresh token');
+    }
+    const user = await this.userModel.findOne({ refreshToken });
+    if (!user) {
+      throw new UnauthorizedException('invalid refresh token');
+    }
+    return user;
   }
 
   async refreshToken(signInDto: SignInDto): Promise<void> {

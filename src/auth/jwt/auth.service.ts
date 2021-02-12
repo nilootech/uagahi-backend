@@ -1,10 +1,9 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { UserService } from '../../models/user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { AuthCredentialDto } from './dto/auth-credential.dto';
 import { JwtPayload } from './jwt-payload';
 import { AuthLoginDto } from './dto/auth-login.dto';
-import { SignInDto } from '../../models/user/signin.dto';
 
 @Injectable()
 export class AuthService {
@@ -33,18 +32,15 @@ export class AuthService {
   }
 
   async refreshToken(refreshToken: string): Promise<AuthLoginDto> {
-    const verifyToken = await this.userService.verifyToken(refreshToken);
-    if (!verifyToken) {
-      throw new UnauthorizedException('invalid refresh token');
-    }
-    const payload: JwtPayload = { userId: verifyToken.userId };
+    const user = await this.userService.getUserByRefreshToken(refreshToken);
+    const payload: JwtPayload = { userId: user._id };
     const accessToken = await this.generateAccessToken(payload);
     const newRefreshToken = await this.generateRefreshToken(payload);
 
     await this.userService.refreshToken({
       accessToken,
       refreshToken: newRefreshToken,
-      userId: verifyToken.userId,
+      userId: user._id,
     });
     return {
       accessToken,

@@ -9,15 +9,13 @@ export class User {
   @Prop()
   name: string;
 
-  @Prop({
-    required: true,
-  })
-  userName: string;
-
   @Prop()
   mobile: string;
 
-  @Prop()
+  @Prop({
+    required: true,
+    unique: true,
+  })
   email: string;
 
   @Prop({ required: true })
