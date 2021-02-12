@@ -35,6 +35,7 @@ export class RolesGuard implements CanActivate {
     const token = authHeader.replace('Bearer ', '');
     const user = await this.userService.getUserByAccessToken(token);
     if (!user) return false;
+    if (user?.roles.includes(Role.Admin)) return true;
     return requiredRoles.some(role => user.roles?.includes(role));
   }
 }
