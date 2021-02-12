@@ -1,16 +1,11 @@
-import * as mongoose from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-
+import { Role } from '../../auth/role/role.enum';
 
 export type UserDocument = User & Document;
 
 @Schema()
 export class User {
-
-  @Prop({ type: mongoose.Schema.Types.ObjectId })
-  _id: string;
-
   @Prop()
   name: string;
 
@@ -33,6 +28,9 @@ export class User {
 
   @Prop()
   refreshToken: string;
+
+  @Prop()
+  roles: Role[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

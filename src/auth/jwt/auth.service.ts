@@ -7,14 +7,27 @@ import { AuthLoginDto } from './dto/auth-login.dto';
 
 @Injectable()
 export class AuthService {
-  constructor(private userService: UserService, private jwtService: JwtService) {}
+  constructor(
+    private userService: UserService,
+    private jwtService: JwtService,
+  ) {}
 
   async signIn(authCredentialDto: AuthCredentialDto): Promise<AuthLoginDto> {
-    const userId = await this.userService.validateUserPassword(authCredentialDto);
+    const userId = await this.userService.validateUserPassword(
+      authCredentialDto,
+    );
     const payload: JwtPayload = { userId };
-    const accessToken = await this.jwtService.signAsync(payload, { expiresIn: 900000 });
-    const refreshToken = await this.jwtService.signAsync(payload, { expiresIn: 6.048e8 });
-    await this.userService.signInComplete({ accessToken, refreshToken, userId });
+    const accessToken = await this.jwtService.signAsync(payload, {
+      expiresIn: 900000,
+    });
+    const refreshToken = await this.jwtService.signAsync(payload, {
+      expiresIn: 6.048e8,
+    });
+    await this.userService.signInComplete({
+      accessToken,
+      refreshToken,
+      userId,
+    });
 
     return { accessToken, refreshToken };
   }

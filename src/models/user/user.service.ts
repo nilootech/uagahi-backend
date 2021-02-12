@@ -2,15 +2,26 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './user.schema';
 import { Model } from 'mongoose';
 import { CreateUserInput } from './inputs/create-user.input';
-import { Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { AuthCredentialDto } from '../../auth/jwt/dto/auth-credential.dto';
 import { SignInDto } from './signin.dto';
+import { Role } from '../../auth/role/role.enum';
+import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
+import { JwtPayload } from '../../auth/jwt/jwt-payload';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {
-  }
+  constructor(
+    @InjectModel(User.name)
+    private userModel: Model<UserDocument>,
+    private config: ConfigService,
+  ) {}
 
   async signUp(createUserInput: CreateUserInput): Promise<User> {
     const { name, birthDate, userName, password } = createUserInput;
@@ -23,11 +34,12 @@ export class UserService {
     user.password = hashedPassword;
     user.birthDate = birthDate;
     user.name = name;
+    user.roles = [Role.User];
     const createdUser = new this.userModel(user);
     try {
       return await createdUser.save();
     } catch (error) {
-      throw  new InternalServerErrorException(error.message);
+      throw new InternalServerErrorException(error.message);
     }
   }
 
@@ -39,7 +51,9 @@ export class UserService {
     await user.save();
   }
 
-  async validateUserPassword(authCredentialDto: AuthCredentialDto): Promise<string> {
+  async validateUserPassword(
+    authCredentialDto: AuthCredentialDto,
+  ): Promise<string> {
     const { password, username } = authCredentialDto;
     const user = await this.getUserByUserName(username);
     const hash = await bcrypt.hash(password, user.salt);
@@ -56,7 +70,7 @@ export class UserService {
   async getUserByUserName(userName: string): Promise<UserDocument> {
     const user = await this.userModel.findOne({ userName });
     if (!user) {
-      throw  new UnauthorizedException('user not found');
+      throw new UnauthorizedException('user not found');
     }
     return user;
   }
@@ -64,7 +78,26 @@ export class UserService {
   async getUserById(userId: string): Promise<UserDocument> {
     const user = await this.userModel.findById(userId);
     if (!user) {
-      throw  new UnauthorizedException('user not found');
+      throw new UnauthorizedException('user not found');
+    }
+    return user;
+  }
+
+  async verifyToken(authToken: string): Promise<JwtPayload> {
+    const jwtService = new JwtService({
+      secret: this.config.get<string>('secret.key'),
+      signOptions: {
+        expiresIn: this.config.get<number>('secret.expire'),
+      },
+    });
+    return await jwtService.verifyAsync(authToken, { ignoreExpiration: false });
+  }
+
+  async getUserByAccessToken(accessToken: string): Promise<UserDocument> {
+    const user = await this.userModel.findOne({ accessToken });
+
+    if (!user) {
+      throw new UnauthorizedException('user not found');
     }
     return user;
   }

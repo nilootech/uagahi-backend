@@ -10,13 +10,18 @@ import { GoogleModule } from './auth/google/google.module';
 import { WinstonModule } from 'nest-winston';
 import * as winston from 'winston';
 import configuration from './config/configuration';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './auth/role/roles.guard';
 
 const ENV = process.env.NODE_ENV;
 
 @Module({
   imports: [
     WinstonModule.forRoot({
-      transports: [new winston.transports.Console(), new winston.transports.File({ filename: 'combined.log' })],
+      transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({ filename: 'combined.log' }),
+      ],
     }),
     ConfigModule.forRoot({
       load: [configuration],
@@ -31,12 +36,21 @@ const ENV = process.env.NODE_ENV;
       }),
       inject: [ConfigService],
     }),
-    GraphQLModule.forRoot({ autoSchemaFile: true }),
+    GraphQLModule.forRoot({
+      autoSchemaFile: true,
+      context: ({ req }) => ({ req }),
+    }),
     UserModule,
     AuthModule,
     GoogleModule,
   ],
   controllers: [GoogleController],
-  providers: [GoogleService],
+  providers: [
+    GoogleService,
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
 })
 export class AppModule {}
