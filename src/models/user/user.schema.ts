@@ -9,6 +9,17 @@ export class User {
   @Prop()
   name: string;
 
+  @Prop({
+    required: true,
+  })
+  userName: string;
+
+  @Prop()
+  mobile: string;
+
+  @Prop()
+  email: string;
+
   @Prop({ required: true })
   password: string;
 
@@ -17,11 +28,6 @@ export class User {
 
   @Prop()
   birthDate: Date;
-
-  @Prop({
-    required: true,
-  })
-  userName: string;
 
   @Prop()
   accessToken: string;

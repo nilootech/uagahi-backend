@@ -1,20 +1,24 @@
 interface Configuration {
-  port: number,
+  port: number;
   secret: {
-    key: string,
-    expire: number
-  }
+    key: string;
+    expire: number;
+  };
   googleAuth2: {
     clientId: string;
     clientSecret: string;
-  }
+  };
   database: {
-    uri: string
-  }
+    uri: string;
+  };
+  domain: {
+    api: string;
+    site: string;
+  };
 }
 
 export default (): Configuration => ({
-  port: 3000,
+  port: +process.env.PORT,
   secret: {
     key: process.env.SECRET_JWT,
     expire: +process.env.JWT_EXPIRE,
@@ -26,4 +30,8 @@ export default (): Configuration => ({
   database: {
     uri: process.env.MONGODB_URI,
   },
-})
+  domain: {
+    api: process.env.API_DOMAIN,
+    site: process.env.SITE_DOMAIN,
+  },
+});

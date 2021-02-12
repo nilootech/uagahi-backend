@@ -33,8 +33,11 @@ export class RolesGuard implements CanActivate {
       throw new UnauthorizedException('token is not valid');
     }
     const token = authHeader.replace('Bearer ', '');
-    const user = await this.userService.getUserByAccessToken(token);
-    if (!user) return false;
+    const verifyToken = await this.userService.verifyToken(token);
+    if (!verifyToken) {
+      throw new UnauthorizedException('invalid verify token');
+    }
+    const user = await this.userService.getUserById(verifyToken.userId);
     if (user?.roles.includes(Role.Admin)) return true;
     return requiredRoles.some(role => user.roles?.includes(role));
   }

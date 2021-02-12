@@ -10,19 +10,10 @@ export class UserType {
   name: string;
 
   @Field()
-  password: string;
-
-  @Field()
   birthDate: Date;
 
   @Field()
   userName: string;
-
-  @Field()
-  accessToken: string;
-
-  @Field()
-  refreshToken: string;
 
   @Field(() => [Role])
   roles: Role[];

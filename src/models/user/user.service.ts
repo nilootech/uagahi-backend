@@ -14,6 +14,7 @@ import { Role } from '../../auth/role/role.enum';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { JwtPayload } from '../../auth/jwt/jwt-payload';
+import { sign } from 'crypto';
 
 @Injectable()
 export class UserService {
@@ -93,12 +94,11 @@ export class UserService {
     return await jwtService.verifyAsync(authToken, { ignoreExpiration: false });
   }
 
-  async getUserByAccessToken(accessToken: string): Promise<UserDocument> {
-    const user = await this.userModel.findOne({ accessToken });
-
-    if (!user) {
-      throw new UnauthorizedException('user not found');
-    }
-    return user;
+  async refreshToken(signInDto: SignInDto): Promise<void> {
+    const { refreshToken, accessToken, userId } = signInDto;
+    const user = await this.getUserById(userId);
+    user.refreshToken = refreshToken;
+    user.accessToken = accessToken;
+    await user.save();
   }
 }
