@@ -33,6 +33,8 @@ const ENV = process.env.NODE_ENV;
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('database.uri'),
+        useCreateIndex: true,
+        useUnifiedTopology: true,
       }),
       inject: [ConfigService],
     }),
