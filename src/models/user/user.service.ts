@@ -14,7 +14,6 @@ import { Role } from '../../auth/role/role.enum';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { JwtPayload } from '../../auth/jwt/jwt-payload';
-import { sign } from 'crypto';
 
 @Injectable()
 export class UserService {
@@ -36,6 +35,7 @@ export class UserService {
     user.birthDate = birthDate;
     user.name = name;
     user.roles = [Role.User];
+    user.accounts = [createUserInput.account];
     const createdUser = new this.userModel(user);
     try {
       return await createdUser.save();
