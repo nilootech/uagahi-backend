@@ -3,7 +3,7 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserType } from './user.type';
 import { CreateUserInput } from './inputs/create-user.input';
 import { Roles } from '../../auth/role/role.decorator';
-import { Role } from '../../auth/role/role.enum';
+import { RoleEnum } from '../../auth/role/role.enum';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from '../../auth/guard/auth-guard.service';
 
@@ -13,7 +13,7 @@ export class UserResolver {
 
   @Query(() => [UserType])
   @UseGuards(GqlAuthGuard)
-  @Roles(Role.Admin)
+  @Roles(RoleEnum.Admin)
   users() {
     return this.userService.findAll();
   }

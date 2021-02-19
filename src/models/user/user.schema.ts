@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Role } from '../../auth/role/role.enum';
+import { RoleEnum } from '../../auth/role/role.enum';
 import {
   AccountModel,
   AccountModelSchema,
@@ -10,38 +10,37 @@ export type UserDocument = User & Document;
 
 @Schema({ timestamps: true })
 export class User {
-  @Prop({ type: String })
+  @Prop()
   name: string;
 
   @Prop({
-    type: String,
     required: true,
     unique: true,
   })
   email: string;
 
-  @Prop({ type: String, unique: true })
+  @Prop({ unique: true })
   mobile: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   password: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   salt: string;
 
-  @Prop({ type: Date, required: true })
+  @Prop({ required: true })
   birthDate: Date;
 
-  @Prop({ type: String })
+  @Prop()
   accessToken: string;
 
-  @Prop({ type: String })
+  @Prop()
   refreshToken: string;
 
   @Prop({ type: [String] })
-  roles: Role[];
+  roles: RoleEnum[];
 
-  @Prop({ type: Boolean, required: true, default: false })
+  @Prop({ required: true, default: false })
   active: boolean;
 
   @Prop({ type: [AccountModelSchema], required: true })

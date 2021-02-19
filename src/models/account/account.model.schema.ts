@@ -1,20 +1,20 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-@Schema()
+@Schema({ timestamps: true })
 export class AccountModel {
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   name: string;
 
-  @Prop({ type: Number, required: true })
+  @Prop({ required: true })
   countTicketPerDay: number;
 
-  @Prop({ type: Boolean, required: true })
+  @Prop({ required: true })
   active: boolean;
 
-  @Prop({ type: Date, required: true })
+  @Prop({ required: true })
   fromDate: Date;
 
-  @Prop({ type: Date, required: true })
+  @Prop({ required: true })
   toDate: Date;
 }
 

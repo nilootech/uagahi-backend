@@ -1,11 +1,11 @@
 import { Prop, SchemaFactory, Schema } from '@nestjs/mongoose';
 
-@Schema()
+@Schema({ _id: false })
 export class ContactModel {
-  @Prop()
+  @Prop({ type: [String] })
   tels: string[];
 
-  @Prop()
+  @Prop({ type: [String] })
   mobiles: string[];
 
   @Prop()

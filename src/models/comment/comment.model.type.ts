@@ -1,7 +1,10 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 
 @ObjectType('CommentModel')
 export class CommentModelType {
+  @Field(() => ID)
+  _id: string;
+
   @Field()
   email: string;
 

@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Role } from '../../auth/role/role.enum';
+import { RoleEnum } from '../../auth/role/role.enum';
 import { User } from './user.schema';
 import { AccountModelType } from '../account/account.model.type';
 
@@ -17,8 +17,8 @@ export class UserType {
   @Field()
   email: string;
 
-  @Field(() => [Role])
-  roles: Role[];
+  @Field(() => [RoleEnum])
+  roles: RoleEnum[];
 
   @Field()
   active: boolean;

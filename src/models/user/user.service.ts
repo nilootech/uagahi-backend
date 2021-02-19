@@ -10,7 +10,7 @@ import {
 import * as bcrypt from 'bcrypt';
 import { AuthCredentialDto } from '../../auth/jwt/dto/auth-credential.dto';
 import { SignInDto } from './signin.dto';
-import { Role } from '../../auth/role/role.enum';
+import { RoleEnum } from '../../auth/role/role.enum';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { JwtPayload } from '../../auth/jwt/jwt-payload';
@@ -34,7 +34,7 @@ export class UserService {
     user.password = hashedPassword;
     user.birthDate = birthDate;
     user.name = name;
-    user.roles = [Role.User];
+    user.roles = [RoleEnum.User];
     user.accounts = [createUserInput.account];
     const createdUser = new this.userModel(user);
     try {
