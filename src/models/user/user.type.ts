@@ -1,7 +1,7 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Role } from '../../auth/role/role.enum';
 import { User } from './user.schema';
-import { AccountUserType } from '../account/accountUser.type';
+import { AccountModelType } from '../account/account.model.type';
 
 @ObjectType('User')
 export class UserType {
@@ -26,6 +26,6 @@ export class UserType {
   @Field()
   mobile: string;
 
-  @Field(() => [AccountUserType])
-  accounts: AccountUserType[];
+  @Field(() => [AccountModelType])
+  accounts: AccountModelType[];
 }
