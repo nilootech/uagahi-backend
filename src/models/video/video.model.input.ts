@@ -1,5 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { IsNumber, IsUrl } from 'class-validator';
+import { IsNumberValidateOption } from '../../constants/index.constant';
 
 @InputType()
 export class VideoModelInput {
@@ -8,6 +9,6 @@ export class VideoModelInput {
   videoUrl: string;
 
   @Field()
-  @IsNumber()
+  @IsNumber(IsNumberValidateOption)
   price: number;
 }

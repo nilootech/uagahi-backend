@@ -8,6 +8,7 @@ import {
   IsString,
   MaxLength,
 } from 'class-validator';
+import { IsNumberValidateOption } from '../../constants/index.constant';
 
 @InputType()
 export class HouseModelInput {
@@ -20,24 +21,24 @@ export class HouseModelInput {
   typeHouse: TypeHouseEnum;
 
   @Field()
-  @IsNumber()
+  @IsNumber(IsNumberValidateOption)
   meter: number;
 
   @Field()
-  @IsNumber()
+  @IsNumber(IsNumberValidateOption)
   prepayment: number;
 
   @Field()
-  @IsNumber()
+  @IsNumber(IsNumberValidateOption)
   roomCount: number;
 
   @Field()
-  @IsNumber()
+  @IsNumber(IsNumberValidateOption)
   @MaxLength(4)
   madeYear: number;
 
   @Field()
-  @IsNumber()
+  @IsNumber(IsNumberValidateOption)
   floor: number;
 
   @Field()
@@ -84,11 +85,11 @@ export class HouseModelInput {
   direction: string;
 
   @Field()
-  @IsNumber()
+  @IsNumber(IsNumberValidateOption)
   allFloorCount: number;
 
   @Field()
-  @IsNumber()
+  @IsNumber(IsNumberValidateOption)
   countUnitPerFloor: number;
 
   @Field()

@@ -11,6 +11,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import { IsNumberValidateOption } from '../../constants/index.constant';
 
 @InputType()
 export class VehicleModelInput {
@@ -24,7 +25,7 @@ export class VehicleModelInput {
   model: string;
 
   @Field(() => Int)
-  @IsNumber()
+  @IsNumber(IsNumberValidateOption)
   @MaxLength(4)
   @MinLength(4)
   madeYear: number;
@@ -42,7 +43,7 @@ export class VehicleModelInput {
   fuelType: FuelTypeEnum;
 
   @Field()
-  @IsNumber()
+  @IsNumber(IsNumberValidateOption)
   kilometer: number;
 
   @Field()

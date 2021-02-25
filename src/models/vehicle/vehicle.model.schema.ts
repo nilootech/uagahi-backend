@@ -2,7 +2,7 @@ import {
   VehicleBrand,
   VehicleBrandSchema,
 } from '../../schemas/vehicleBrand/vehicleBrand.schema';
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { PlaqueTypeEnum } from './enums/plaqueType.enum';
 import { GearBoxTypeEnum } from './enums/gearBox.enum';
 import { FuelTypeEnum } from './enums/fuelType.enum';
@@ -34,3 +34,5 @@ export class VehicleModel {
   @Prop({ type: String, default: BodyStatusEnum.NonePainted, required: true })
   bodyStatus: BodyStatusEnum;
 }
+
+export const VehicleModelSchema = SchemaFactory.createForClass(VehicleModel);

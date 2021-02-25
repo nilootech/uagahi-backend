@@ -1,5 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { IsBoolean, IsDate, IsNumber, MinLength } from 'class-validator';
+import { IsNumberValidateOption } from '../../constants/index.constant';
 
 @InputType()
 export class AccountModelInput {
@@ -8,7 +9,7 @@ export class AccountModelInput {
   name: string;
 
   @Field()
-  @IsNumber()
+  @IsNumber(IsNumberValidateOption)
   countTicketPerDay: number;
 
   @Field()

@@ -9,4 +9,4 @@ export class VideoModel {
   price: number;
 }
 
-export const VideoSchema = SchemaFactory.createForClass(VideoModel);
+export const VideoModelSchema = SchemaFactory.createForClass(VideoModel);
