@@ -6,9 +6,9 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { ROLES_KEY } from './role.decorator';
-import { Role } from './role.enum';
+import { RoleEnum } from './role.enum';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { UserService } from '../../models/user/user.service';
+import { UserService } from '../../schemas/user/user.service';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -20,10 +20,10 @@ export class RolesGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const ctx = GqlExecutionContext.create(context);
 
-    const requiredRoles = this.reflector.getAllAndOverride<Role[]>(ROLES_KEY, [
-      ctx.getHandler(),
-      ctx.getClass(),
-    ]);
+    const requiredRoles = this.reflector.getAllAndOverride<RoleEnum[]>(
+      ROLES_KEY,
+      [ctx.getHandler(), ctx.getClass()],
+    );
     if (!requiredRoles) {
       return true;
     }
@@ -34,7 +34,7 @@ export class RolesGuard implements CanActivate {
     }
     const token = authHeader.replace('Bearer ', '');
     const user = await this.userService.getUserByAccessToken(token);
-    if (user?.roles.includes(Role.Admin)) return true;
+    if (user?.roles.includes(RoleEnum.Admin)) return true;
     return requiredRoles.some(role => user.roles?.includes(role));
   }
 }
