@@ -2,7 +2,7 @@ import {
   CoordinateModel,
   CoordinateModelSchema,
 } from '../coordinate/coordinate.model.schema';
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema({ timestamps: true, _id: false })
 export class VisitModel {
@@ -12,3 +12,5 @@ export class VisitModel {
   @Prop({ type: CoordinateModelSchema })
   coordinate: CoordinateModel;
 }
+
+export const VisitModelSchema = SchemaFactory.createForClass(VisitModel);

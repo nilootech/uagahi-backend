@@ -1,5 +1,5 @@
 import { User, UserSchema } from '../../schemas/user/user.schema';
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 
 @Schema({ timestamps: true })
@@ -17,3 +17,5 @@ export class MessageModel {
   @Prop()
   messageBody: string;
 }
+
+export const MessageModelSchema = SchemaFactory.createForClass(MessageModel);
