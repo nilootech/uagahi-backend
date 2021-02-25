@@ -1,5 +1,5 @@
 import { Field, ID, InputType } from '@nestjs/graphql';
-import { UserType } from '../user/user.type';
+import { UserType } from '../../schemas/user/user.type';
 import mongoose from 'mongoose';
 
 @InputType()

@@ -1,5 +1,5 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
-import { VehicleBrand } from '../vehicleBrand/vehicleBrand.schema';
+import { VehicleBrand } from '../../schemas/vehicleBrand/vehicleBrand.schema';
 import { PlaqueTypeEnum } from './plaqueType.enum';
 import { GearBoxTypeEnum } from './gearBox.enum';
 import { FuelTypeEnum } from './fuelType.enum';

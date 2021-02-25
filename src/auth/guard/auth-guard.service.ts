@@ -1,4 +1,4 @@
-import { UserService } from '../../models/user/user.service';
+import { UserService } from '../../schemas/user/user.service';
 import {
   BadRequestException,
   ExecutionContext,

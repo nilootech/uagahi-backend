@@ -4,7 +4,7 @@ import { RoleEnum } from '../../auth/role/role.enum';
 import {
   AccountModel,
   AccountModelSchema,
-} from '../account/account.model.schema';
+} from '../../models/account/account.model.schema';
 
 export type UserDocument = User & Document;
 

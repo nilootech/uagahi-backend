@@ -1,7 +1,7 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { RoleEnum } from '../../auth/role/role.enum';
 import { User } from './user.schema';
-import { AccountModelType } from '../account/account.model.type';
+import { AccountModelType } from '../../models/account/account.model.type';
 
 @ObjectType('User')
 export class UserType {

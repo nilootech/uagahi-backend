@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import mongoose from 'mongoose';
-import { UserType } from '../user/user.type';
+import { UserType } from '../../schemas/user/user.type';
 
 @ObjectType('MessageModel')
 export class MessageModelType {

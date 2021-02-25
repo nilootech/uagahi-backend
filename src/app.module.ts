@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
-import { UserModule } from './models/user/user.module';
+import { UserModule } from './schemas/user/user.module';
 import { AuthModule } from './auth/jwt/auth.module';
 import { GoogleController } from './auth/google/google.controller';
 import { GoogleService } from './auth/google/google.service';
