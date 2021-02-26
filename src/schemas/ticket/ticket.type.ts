@@ -22,19 +22,19 @@ export class TicketType {
   @Field()
   name: string;
 
-  @Field()
+  @Field(() => ContactModelType)
   contact: ContactModelType;
 
-  @Field()
+  @Field(() => ContentModelType)
   acceptedContent: ContentModelType;
 
-  @Field()
+  @Field(() => ContentModelType)
   tempContent: ContentModelType;
 
   @Field()
   starsCount: number;
 
-  @Field()
+  @Field(() => CategoryType)
   category: CategoryType;
 
   @Field(() => [VisitModelType])
@@ -58,7 +58,7 @@ export class TicketType {
   @Field(() => [MessageModelType])
   messages: MessageModelType[];
 
-  @Field()
+  @Field(() => ManageTimeModelType)
   manageTime: ManageTimeModelType;
 
   @Field(() => [ReportModelType])
@@ -70,6 +70,6 @@ export class TicketType {
   @Field(() => [TelegramModelType])
   telegram: TelegramModelType[];
 
-  @Field()
+  @Field(() => UserType)
   user: UserType;
 }

@@ -6,7 +6,7 @@ export class ReportModelType {
   @Field(() => ID)
   _id: string;
 
-  @Field()
+  @Field(() => UserType)
   user: UserType;
 
   @Field()

@@ -30,6 +30,6 @@ export class InstagramModelType {
   @Field()
   storyPrice: number;
 
-  @Field()
+  @Field(() => DoingModelType)
   doing: DoingModelType;
 }

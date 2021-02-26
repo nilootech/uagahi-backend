@@ -6,16 +6,16 @@ import { CoordinateModelType } from '../coordinate/coordinate.model.type';
 
 @ObjectType('LocationModel')
 export class LocationModelType {
-  @Field()
+  @Field(() => CoordinateModelType)
   coordinate: CoordinateModelType;
 
-  @Field()
+  @Field(() => ProvinceType)
   province: ProvinceType;
 
-  @Field()
+  @Field(() => CityType)
   city: CityType;
 
-  @Field()
+  @Field(() => AreaModelType)
   area: AreaModelType;
 
   @Field()

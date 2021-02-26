@@ -1,18 +1,16 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import mongoose from 'mongoose';
 import { UserType } from '../../schemas/user/user.type';
 
 @ObjectType('MessageModel')
 export class MessageModelType {
-  @Field()
+  @Field(() => UserType)
   from: UserType;
 
-  @Field()
+  @Field(() => UserType)
   to: UserType;
 
-  // Todo ref
   @Field()
-  ticket: mongoose.Schema.Types.ObjectId;
+  ticketId: string;
 
   @Field()
   messageBody: string;

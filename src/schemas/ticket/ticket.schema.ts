@@ -39,18 +39,18 @@ import {
 import { User } from '../user/user.schema';
 import * as mongoose from 'mongoose';
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, autoIndex: false })
 export class Ticket {
-  @Prop({ required: true })
+  @Prop({ required: true, index: true })
   title: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, index: true })
   name: string;
 
-  @Prop({ type: ContactModelSchema })
+  @Prop({ type: ContactModelSchema, index: true })
   contact: ContactModel;
 
-  @Prop({ type: ContentModelSchema })
+  @Prop({ type: ContentModelSchema, index: true })
   acceptedContent: ContentModel;
 
   @Prop({ type: ContentModelSchema })
@@ -59,7 +59,7 @@ export class Ticket {
   @Prop({ default: 0 })
   starsCount: number;
 
-  @Prop({ type: CategorySchema, required: true })
+  @Prop({ type: CategorySchema, required: true, index: true })
   category: Category;
 
   @Prop({ type: [VisitModelSchema] })
@@ -95,7 +95,7 @@ export class Ticket {
   @Prop({ type: [TelegramModelSchema] })
   telegram: TelegramModel[];
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   user: User;
 }
 

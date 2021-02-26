@@ -16,7 +16,7 @@ export class Category {
   @Prop()
   active: boolean;
 
-  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Ticket.name }])
+  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket' }])
   tickets: Ticket[];
 }
 

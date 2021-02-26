@@ -13,25 +13,25 @@ export class ContentModelType {
   @Field()
   body: string;
 
-  @Field()
-  galleryUrls: [string];
+  @Field(() => [String])
+  galleryUrls: string[];
 
   @Field()
   voiceUrl: string;
 
-  @Field()
+  @Field(() => VideoModelType)
   video: VideoModelType;
 
   @Field(() => [String])
   tags: string[];
 
-  @Field()
+  @Field(() => LocationModelType)
   location: LocationModelType;
 
-  @Field()
+  @Field(() => VehicleModelType)
   vehicle: VehicleModelType;
 
-  @Field()
+  @Field(() => HouseModelType)
   house: HouseModelType;
 
   @Field()
@@ -40,6 +40,6 @@ export class ContentModelType {
   @Field()
   displayPrice: boolean;
 
-  @Field()
+  @Field(() => ContentTypeEnum)
   type: ContentTypeEnum;
 }

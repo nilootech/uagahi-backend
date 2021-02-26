@@ -12,6 +12,6 @@ export class VisitModelType {
   @Field()
   updateAt: Date;
 
-  @Field()
+  @Field(() => CoordinateModelType)
   coordinate: CoordinateModelType;
 }

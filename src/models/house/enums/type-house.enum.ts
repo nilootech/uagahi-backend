@@ -8,5 +8,5 @@ export enum TypeHouseEnum {
 }
 
 registerEnumType(TypeHouseEnum, {
-  name: 'Living',
+  name: 'TypeHouseEnum',
 });

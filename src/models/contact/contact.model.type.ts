@@ -2,10 +2,10 @@ import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType('ContactModel')
 export class ContactModelType {
-  @Field()
+  @Field(() => [String])
   tels: string[];
 
-  @Field()
+  @Field(() => [String])
   mobiles: string[];
 
   @Field()

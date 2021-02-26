@@ -15,6 +15,6 @@ export class TelegramModelType {
   @Field()
   price: number;
 
-  @Field()
+  @Field(() => DoingModelType)
   doing: DoingModelType;
 }
