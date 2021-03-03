@@ -8,6 +8,7 @@ import {
 import { Financial } from '../financial/financial.schema';
 import * as mongoose from 'mongoose';
 import { Ticket } from '../ticket/ticket.schema';
+import { Ads } from '../ads/ads.schema';
 
 export type UserDocument = User & Document;
 
@@ -58,6 +59,9 @@ export class User {
 
   @Prop({ default: 0 })
   balance: number;
+
+  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Ads' }])
+  advises: Ads[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

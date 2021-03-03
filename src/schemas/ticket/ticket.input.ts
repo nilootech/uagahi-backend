@@ -87,4 +87,7 @@ export class TicketInput {
 
   @Field(() => [TelegramModelInput])
   telegram: TelegramModelInput[];
+
+  @Field()
+  user: string;
 }

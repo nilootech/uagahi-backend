@@ -14,4 +14,7 @@ export class MessageModelType {
 
   @Field()
   messageBody: string;
+
+  @Field()
+  deliver: boolean;
 }

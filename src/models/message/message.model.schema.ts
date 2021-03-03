@@ -14,6 +14,9 @@ export class MessageModel {
 
   @Prop()
   messageBody: string;
+
+  @Prop({ default: false })
+  deliver: boolean;
 }
 
 export const MessageModelSchema = SchemaFactory.createForClass(MessageModel);

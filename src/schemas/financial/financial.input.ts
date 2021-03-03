@@ -15,4 +15,7 @@ export class FinancialInput {
 
   @Field()
   withdraw: WithdrawModelInput;
+
+  @Field()
+  user: string;
 }
