@@ -33,4 +33,9 @@ export class VehicleBrandResolver {
   ) {
     return this.vehicleBrandService.update(updateVehicleBrandInput);
   }
+
+  @Mutation(() => VehicleBrandType)
+  removeVehicleBrand(@Args('id') id: string) {
+    return this.vehicleBrandService.remove(id);
+  }
 }

@@ -21,6 +21,11 @@ export class VehicleBrandService {
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
   ) {}
 
+  catchError(e) {
+    this.logger.log('error', e.message);
+    throw new InternalServerErrorException(e.message);
+  }
+
   async get(id: string): Promise<VehicleBrandDocument> {
     if (!id || id === '') {
       throw new BadRequestException('id is empty');
@@ -40,8 +45,7 @@ export class VehicleBrandService {
       const createVehicleBrand = new this.vehicleBrandModel(vehicleBrand);
       return await createVehicleBrand.save();
     } catch (e) {
-      this.logger.log('error', e.message);
-      throw new InternalServerErrorException(e.message);
+      this.catchError(e);
     }
   }
 
@@ -58,8 +62,16 @@ export class VehicleBrandService {
     try {
       return await find.save();
     } catch (e) {
-      this.logger.log('error', e.message);
-      throw new InternalServerErrorException(e.message);
+      this.catchError(e);
+    }
+  }
+
+  async remove(id: string): Promise<VehicleBrandDocument> {
+    const find = await this.get(id);
+    try {
+      return await find.remove();
+    } catch (e) {
+      this.catchError(e);
     }
   }
 }
