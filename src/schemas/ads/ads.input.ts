@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { AdsLocationInput } from '../adsLocation/adsLocation.input';
+import { AdsLocationInput } from '../adsLocation/ads-location.input';
 import { IsDateString, IsUrl, MaxLength } from 'class-validator';
 
 @InputType()

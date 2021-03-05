@@ -1,7 +1,7 @@
-import { JobCategory } from '../jobCategory/jobCategory.schema';
+import { JobCategory } from '../jobCategory/job-category.schema';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { TypeOfCooperationEnum } from './enums/typeOfCooperation.enum';
+import { TypeOfCooperationEnum } from './enums/type-of-cooperation.enum';
 import {
   LocationModel,
   LocationModelSchema,

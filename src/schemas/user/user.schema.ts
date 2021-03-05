@@ -9,8 +9,8 @@ import { Financial } from '../financial/financial.schema';
 import * as mongoose from 'mongoose';
 import { Ticket } from '../ticket/ticket.schema';
 import { Ads } from '../ads/ads.schema';
-import { JobSeeker } from '../jobSeeker/jobSeeker.schema';
-import { FollowCategory } from '../followCategory/followCategory.schema';
+import { JobSeeker } from '../jobSeeker/job-seeker.schema';
+import { FollowCategory } from '../followCategory/follow-category.schema';
 
 export type UserDocument = User & Document;
 
@@ -23,10 +23,11 @@ export class User {
     required: true,
     unique: true,
     index: true,
+    type: String,
   })
   email: string;
 
-  @Prop({ unique: true, index: true })
+  @Prop({ type: String, index: true })
   mobile: string;
 
   @Prop({ required: true })

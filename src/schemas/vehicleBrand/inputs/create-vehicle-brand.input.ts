@@ -1,12 +1,12 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsString, MaxLength } from 'class-validator';
+import { IsArray, IsString, MaxLength } from 'class-validator';
 import {
   VehicleBrandNameMaxLength,
   VehicleBrandNameModelMaxLength,
-} from '../../constants/index.constant';
+} from '../../../constants/index.constant';
 
 @InputType()
-export class VehicleBrandInput {
+export class CreateVehicleBrandInput {
   @Field()
   @IsString()
   @MaxLength(VehicleBrandNameMaxLength)
@@ -15,5 +15,6 @@ export class VehicleBrandInput {
   @Field(() => [String])
   @IsString({ each: true })
   @MaxLength(VehicleBrandNameModelMaxLength, { each: true })
+  @IsArray()
   models: string[];
 }

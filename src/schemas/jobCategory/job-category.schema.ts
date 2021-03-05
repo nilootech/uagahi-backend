@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { JobSeeker } from '../jobSeeker/jobSeeker.schema';
+import { JobSeeker } from '../jobSeeker/job-seeker.schema';
 import * as mongoose from 'mongoose';
 
 export type JobCategoryDocument = JobCategory & Document;

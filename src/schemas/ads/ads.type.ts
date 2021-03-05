@@ -1,6 +1,6 @@
 import { User } from '../user/user.schema';
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { AdsLocationType } from '../adsLocation/adsLocation.type';
+import { AdsLocationType } from '../adsLocation/ads-location.type';
 import { Ads } from './ads.schema';
 import { UserType } from '../user/user.type';
 

@@ -1,6 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { TypeOfCooperationEnum } from './enums/typeOfCooperation.enum';
-import { JobCategoryInput } from '../jobCategory/jobCategory.input';
+import { TypeOfCooperationEnum } from './enums/type-of-cooperation.enum';
+import { JobCategoryInput } from '../jobCategory/job-category.input';
 import { LocationModelInput } from '../../models/location/location.model.input';
 import { ContactModelInput } from '../../models/contact/contact.model.input';
 

@@ -3,7 +3,7 @@ import { RoleEnum } from '../../auth/role/role.enum';
 import { AccountModelType } from '../../models/account/account.model.type';
 import { TicketType } from '../ticket/ticket.type';
 import { AdsType } from '../ads/ads.type';
-import { JobSeekerType } from '../jobSeeker/jobSeeker.type';
+import { JobSeekerType } from '../jobSeeker/job-seeker.type';
 
 @ObjectType('User')
 export class UserType {

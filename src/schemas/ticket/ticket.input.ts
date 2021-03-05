@@ -5,7 +5,7 @@ import { CategoryInput } from '../category/category.input';
 import { VisitModelInput } from '../../models/visit/visit.model.input';
 import { CommentModelInput } from '../../models/comment/comment.model.input';
 import { MessageModelInput } from '../../models/message/message.model.input';
-import { ManageTimeModelInput } from '../../models/manageTime/manageTime.model.input';
+import { ManageTimeModelInput } from '../../models/manageTime/manage-time.model.input';
 import { ReportModelInput } from '../../models/report/report.model.input';
 import { InstagramModelInput } from '../../models/instagram/instagram.model.input';
 import { TelegramModelInput } from '../../models/telegram/telegram.model.input';

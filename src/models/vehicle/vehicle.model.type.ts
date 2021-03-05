@@ -3,7 +3,7 @@ import { GearBoxTypeEnum } from './enums/gearBox.enum';
 import { FuelTypeEnum } from './enums/fuelType.enum';
 import { BodyStatusEnum } from './enums/bodyStatus.enum';
 import { Field, ObjectType } from '@nestjs/graphql';
-import { VehicleBrandType } from '../../schemas/vehicleBrand/vehicleBrand.type';
+import { VehicleBrandType } from '../../schemas/vehicleBrand/vehicle-brand.type';
 
 @ObjectType('VehicleModel')
 export class VehicleModelType {

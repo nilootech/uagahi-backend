@@ -11,12 +11,12 @@ import {
   MinLength,
 } from 'class-validator';
 import { IsNumberValidateOption } from '../../constants/index.constant';
-import { VehicleBrandInput } from '../../schemas/vehicleBrand/vehicleBrand.input';
+import { CreateVehicleBrandInput } from '../../schemas/vehicleBrand/inputs/create-vehicle-brand.input';
 
 @InputType()
 export class VehicleModelInput {
   @Field()
-  brand: VehicleBrandInput;
+  brand: CreateVehicleBrandInput;
 
   @Field()
   @IsString()

@@ -1,4 +1,4 @@
-import { AdsLocation } from '../adsLocation/adsLocation.schema';
+import { AdsLocation } from '../adsLocation/ads-location.schema';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { User } from '../user/user.schema';

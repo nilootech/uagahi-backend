@@ -23,7 +23,7 @@ import {
 import {
   ManageTimeModel,
   ManageTimeModelSchema,
-} from '../../models/manageTime/manageTime.model.schema';
+} from '../../models/manageTime/manage-time.model.schema';
 import {
   ReportModel,
   ReportModelSchema,

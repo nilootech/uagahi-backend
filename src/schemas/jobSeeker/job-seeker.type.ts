@@ -1,6 +1,6 @@
-import { TypeOfCooperationEnum } from './enums/typeOfCooperation.enum';
+import { TypeOfCooperationEnum } from './enums/type-of-cooperation.enum';
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { JobCategoryType } from '../jobCategory/jobCategory.type';
+import { JobCategoryType } from '../jobCategory/job-category.type';
 import { LocationModelType } from '../../models/location/location.model.type';
 import { ContactModelType } from '../../models/contact/contact.model.type';
 import { UserType } from '../user/user.type';

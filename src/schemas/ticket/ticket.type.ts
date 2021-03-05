@@ -9,7 +9,7 @@ import { VisitModelType } from '../../models/visit/visit.model.type';
 import { ContactModelType } from '../../models/contact/contact.model.type';
 import { ContentModelType } from '../../models/content/content.model.type';
 import { CategoryType } from '../category/category.type';
-import { ManageTimeModelType } from '../../models/manageTime/manageTime.model.type';
+import { ManageTimeModelType } from '../../models/manageTime/manage-time.model.type';
 
 @ObjectType('Ticket')
 export class TicketType {
