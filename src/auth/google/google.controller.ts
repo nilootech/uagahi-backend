@@ -8,11 +8,13 @@ export class GoogleController {
 
   @Get()
   @UseGuards(AuthGuard('google'))
-  async googleAuth(@Req() req) {}
+  googleAuth(@Req() req) {
+    console.log(req);
+  }
 
   @Get('redirect')
   @UseGuards(AuthGuard('google'))
   googleAuthRedirect(@Req() req) {
-    return this.googleService.googleLogin(req)
+    return this.googleService.googleLogin(req);
   }
 }

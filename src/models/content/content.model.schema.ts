@@ -11,12 +11,12 @@ import {
 import { HouseModel, HouseModelSchema } from '../house/house.model.schema';
 import { ContentTypeEnum } from './enums/content-type.enum';
 
-@Schema({ timestamps: true, _id: false })
+@Schema({ timestamps: true, _id: false, autoIndex: false })
 export class ContentModel {
   @Prop()
   websiteUrl: string;
 
-  @Prop()
+  @Prop({ index: true })
   body: string;
 
   @Prop()
@@ -28,19 +28,19 @@ export class ContentModel {
   @Prop({ type: VideoModelSchema })
   video: VideoModel;
 
-  @Prop({ type: [String] })
+  @Prop({ type: [String], index: true })
   tags: string[];
 
-  @Prop({ type: LocationModelSchema })
+  @Prop({ type: LocationModelSchema, index: true })
   location: LocationModel;
 
-  @Prop({ type: VehicleModelSchema })
+  @Prop({ type: VehicleModelSchema, index: true })
   vehicle: VehicleModel;
 
-  @Prop({ type: HouseModelSchema })
+  @Prop({ type: HouseModelSchema, index: true })
   house: HouseModel;
 
-  @Prop()
+  @Prop({ index: true })
   price: number;
 
   @Prop()

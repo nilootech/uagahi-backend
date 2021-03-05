@@ -1,7 +1,9 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { RoleEnum } from '../../auth/role/role.enum';
-import { User } from './user.schema';
 import { AccountModelType } from '../../models/account/account.model.type';
+import { TicketType } from '../ticket/ticket.type';
+import { AdsType } from '../ads/ads.type';
+import { JobSeekerType } from '../jobSeeker/job-seeker.type';
 
 @ObjectType('User')
 export class UserType {
@@ -28,4 +30,16 @@ export class UserType {
 
   @Field(() => [AccountModelType])
   accounts: AccountModelType[];
+
+  @Field(() => [TicketType])
+  tickets: TicketType[];
+
+  @Field()
+  balance: number;
+
+  @Field(() => [AdsType])
+  advises: AdsType[];
+
+  @Field(() => [JobSeekerType])
+  jobSeekers: JobSeekerType[];
 }

@@ -4,10 +4,10 @@ import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType('HouseModel')
 export class HouseModelType {
-  @Field()
+  @Field(() => TypeRequestEnum)
   typeRequest: TypeRequestEnum;
 
-  @Field()
+  @Field(() => TypeHouseEnum)
   typeHouse: TypeHouseEnum;
 
   @Field()

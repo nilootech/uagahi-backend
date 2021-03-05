@@ -5,7 +5,7 @@ export type VehicleBrandDocument = VehicleBrand & Document;
 
 @Schema()
 export class VehicleBrand {
-  @Prop()
+  @Prop({ type: String, unique: true, index: true })
   name: string;
 
   @Prop({ type: [String] })

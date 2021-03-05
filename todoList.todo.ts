@@ -1,14 +1,14 @@
 // Custom Logger
 // Role Users
 // Refresh Token
-// TODO Complete User Schema
-// TODO Categories Schema
-// TODO Public Tickets
-// TODO Houses Tickets
-// TODO Vehicle Tickets
-// TODO Accounts Tickets
-// TODO FAQ
-// TODO Ads
-// TODO Jobs
-// TODO Blogs
-// TODO Contact Us
+//  Complete User Schema
+//  Categories Schema
+//  Public Tickets
+//  Houses Tickets
+//  Vehicle Tickets
+//  Accounts Tickets
+//  FAQ
+//  Ads
+//  Jobs
+//  Blogs
+//  Contact Us

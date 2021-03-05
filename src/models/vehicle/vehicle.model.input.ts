@@ -1,5 +1,4 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
-import { VehicleBrand } from '../../schemas/vehicleBrand/vehicleBrand.schema';
 import { PlaqueTypeEnum } from './enums/plaqueType.enum';
 import { GearBoxTypeEnum } from './enums/gearBox.enum';
 import { FuelTypeEnum } from './enums/fuelType.enum';
@@ -12,12 +11,12 @@ import {
   MinLength,
 } from 'class-validator';
 import { IsNumberValidateOption } from '../../constants/index.constant';
+import { CreateVehicleBrandInput } from '../../schemas/vehicleBrand/inputs/create-vehicle-brand.input';
 
 @InputType()
 export class VehicleModelInput {
   @Field()
-  @IsEnum(VehicleBrand)
-  brand: VehicleBrand;
+  brand: CreateVehicleBrandInput;
 
   @Field()
   @IsString()

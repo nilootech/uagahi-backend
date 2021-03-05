@@ -1,18 +1,14 @@
-import { Prop } from '@nestjs/mongoose';
-import {
-  VehicleBrand,
-  VehicleBrandSchema,
-} from '../../schemas/vehicleBrand/vehicleBrand.schema';
 import { PlaqueTypeEnum } from './enums/plaqueType.enum';
 import { GearBoxTypeEnum } from './enums/gearBox.enum';
 import { FuelTypeEnum } from './enums/fuelType.enum';
 import { BodyStatusEnum } from './enums/bodyStatus.enum';
 import { Field, ObjectType } from '@nestjs/graphql';
+import { VehicleBrandType } from '../../schemas/vehicleBrand/vehicle-brand.type';
 
 @ObjectType('VehicleModel')
 export class VehicleModelType {
-  @Field()
-  brand: VehicleBrand;
+  @Field(() => VehicleBrandType)
+  brand: VehicleBrandType;
 
   @Field()
   model: string;
@@ -20,18 +16,18 @@ export class VehicleModelType {
   @Field()
   madeYear: number;
 
-  @Field()
+  @Field(() => PlaqueTypeEnum)
   plaqueType: PlaqueTypeEnum;
 
-  @Field()
+  @Field(() => GearBoxTypeEnum)
   gearBoxType: GearBoxTypeEnum;
 
-  @Field()
+  @Field(() => FuelTypeEnum)
   fuelType: FuelTypeEnum;
 
   @Field()
   kilometer: number;
 
-  @Field()
+  @Field(() => BodyStatusEnum)
   bodyStatus: BodyStatusEnum;
 }

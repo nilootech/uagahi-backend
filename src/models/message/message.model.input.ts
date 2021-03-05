@@ -1,6 +1,5 @@
 import { Field, ID, InputType } from '@nestjs/graphql';
 import { UserType } from '../../schemas/user/user.type';
-import mongoose from 'mongoose';
 
 @InputType()
 export class MessageModelInput {
@@ -13,9 +12,8 @@ export class MessageModelInput {
   @Field()
   to: UserType;
 
-  // Todo ref
   @Field()
-  ticket: mongoose.Schema.Types.ObjectId;
+  ticketId: string;
 
   @Field()
   messageBody: string;

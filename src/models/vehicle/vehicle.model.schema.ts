@@ -1,7 +1,7 @@
 import {
   VehicleBrand,
   VehicleBrandSchema,
-} from '../../schemas/vehicleBrand/vehicleBrand.schema';
+} from '../../schemas/vehicleBrand/vehicle-brand.schema';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { PlaqueTypeEnum } from './enums/plaqueType.enum';
 import { GearBoxTypeEnum } from './enums/gearBox.enum';
