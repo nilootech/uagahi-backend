@@ -71,6 +71,9 @@ export class User {
 
   @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'FollowCategory' }])
   followCategories: FollowCategory[];
+
+  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket' }])
+  savedTickets: Ticket[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

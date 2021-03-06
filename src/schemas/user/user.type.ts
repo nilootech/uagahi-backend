@@ -42,4 +42,7 @@ export class UserType {
 
   @Field(() => [JobSeekerType])
   jobSeekers: JobSeekerType[];
+
+  @Field(() => [TicketType])
+  savedTickets: TicketType[];
 }

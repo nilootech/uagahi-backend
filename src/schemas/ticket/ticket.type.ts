@@ -10,6 +10,8 @@ import { ContactModelType } from '../../models/contact/contact.model.type';
 import { ContentModelType } from '../../models/content/content.model.type';
 import { CategoryType } from '../category/category.type';
 import { ManageTimeModelType } from '../../models/manageTime/manage-time.model.type';
+import { RateModel } from '../../models/rate/rate.model.schema';
+import { RateModelType } from '../../models/rate/rate.model.type';
 
 @ObjectType('Ticket')
 export class TicketType {
@@ -40,20 +42,23 @@ export class TicketType {
   @Field(() => [VisitModelType])
   visits: VisitModelType[];
 
+  @Field(() => RateModelType)
+  rates: RateModelType[];
+
   @Field()
   expire: Date;
 
   @Field()
   active: boolean;
 
+  @Field()
+  publish: boolean;
+
   @Field(() => [CommentModelType])
   comments: CommentModelType[];
 
   @Field()
   logoUrl: string;
-
-  @Field(() => [String])
-  useful: string[];
 
   @Field(() => [MessageModelType])
   messages: MessageModelType[];

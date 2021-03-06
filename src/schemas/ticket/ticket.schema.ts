@@ -38,6 +38,10 @@ import {
 } from '../../models/telegram/telegram.model.schema';
 import { User } from '../user/user.schema';
 import * as mongoose from 'mongoose';
+import {
+  RateModel,
+  RateModelSchema,
+} from '../../models/rate/rate.model.schema';
 
 @Schema({ timestamps: true, autoIndex: false })
 export class Ticket {
@@ -65,20 +69,23 @@ export class Ticket {
   @Prop({ type: [VisitModelSchema] })
   visits: VisitModel[];
 
+  @Prop({ type: [RateModelSchema] })
+  rates: RateModel[];
+
   @Prop()
   expire: Date;
 
   @Prop()
   active: boolean;
 
+  @Prop()
+  publish: boolean;
+
   @Prop({ type: [CommentModelSchema] })
   comments: CommentModel[];
 
   @Prop()
   logoUrl: string;
-
-  @Prop({ type: [String] })
-  useful: string[];
 
   @Prop({ type: [MessageModelSchema] })
   messages: MessageModel[];
