@@ -13,6 +13,7 @@ import configuration from './config/configuration';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './auth/role/roles.guard';
 import { VehicleBrandModule } from './schemas/vehicleBrand/vehicle-brand.module';
+import { TicketModule } from './schemas/ticket/ticket.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -51,6 +52,7 @@ const ENV = process.env.NODE_ENV;
     AuthModule,
     GoogleModule,
     VehicleBrandModule,
+    TicketModule,
   ],
   controllers: [GoogleController],
   providers: [

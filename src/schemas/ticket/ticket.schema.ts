@@ -42,8 +42,11 @@ import {
   RateModel,
   RateModelSchema,
 } from '../../models/rate/rate.model.schema';
+import { Document } from 'mongoose';
 
-@Schema({ timestamps: true, autoIndex: false })
+export type TicketDocument = Ticket & Document;
+
+@Schema({ timestamps: true })
 export class Ticket {
   @Prop({ required: true, index: true })
   title: string;

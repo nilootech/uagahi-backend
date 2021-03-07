@@ -6,3 +6,4 @@ export const IsNumberValidateOption = {
   maxDecimalPlaces: 0,
   allowNaN: false,
 };
+export const IDLength = 24;
