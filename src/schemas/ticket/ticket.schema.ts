@@ -75,6 +75,14 @@ export class Ticket {
   @Prop({ type: [RateModelSchema] })
   rates: RateModel[];
 
+  @Prop({
+    type: Number,
+    default: () => {
+      return this.rates.reduce((sum, current) => sum + current.rate, 0);
+    },
+  })
+  rate: number;
+
   @Prop()
   expire: Date;
 

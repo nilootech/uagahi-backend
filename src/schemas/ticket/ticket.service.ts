@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
 import { GetAllTicketInput } from './inputs/get-all-ticket.input';
+import { SortTicketEnum } from './enums/sort-ticket.enum';
 
 @Injectable()
 export class TicketService {
@@ -14,28 +15,47 @@ export class TicketService {
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
   ) {}
 
-  async getAll(getAllTicketInput: GetAllTicketInput) {
+  async getAll(
+    getAllTicketInput: GetAllTicketInput,
+  ): Promise<TicketDocument[]> {
+    const {
+      sort,
+      categories,
+      toDate,
+      fromDate,
+      pagination,
+      active,
+    } = getAllTicketInput;
     const query = {};
-    if (getAllTicketInput.active) {
-      query['active'] = getAllTicketInput.active;
+    if (active) {
+      query['active'] = active;
     }
     const date = {};
-    if (getAllTicketInput.fromDate) {
-      date['$gte'] = getAllTicketInput.fromDate;
+    if (fromDate) {
+      date['$gte'] = fromDate;
     }
-    if (getAllTicketInput.toDate) {
-      date['$lte'] = getAllTicketInput.toDate;
+    if (toDate) {
+      date['$lte'] = toDate;
     }
     if (Object.keys(date).length) {
       query['createdAt'] = date;
     }
-
+    let sortQuery = {};
+    switch (sort.sortBy) {
+      case SortTicketEnum.ByDate:
+        sortQuery = { createdAt: sort.type };
+        break;
+      case SortTicketEnum.ByRate:
+        sortQuery = {};
+        break;
+    }
     return await this.ticketModel
       .find(query)
+      .sort(sortQuery)
       .where('category')
-      .in(getAllTicketInput.categories)
-      .skip(getAllTicketInput.pagination.skip)
-      .limit(getAllTicketInput.pagination.limit)
+      .in(categories)
+      .skip(pagination.skip)
+      .limit(pagination.limit)
       .exec();
   }
 }

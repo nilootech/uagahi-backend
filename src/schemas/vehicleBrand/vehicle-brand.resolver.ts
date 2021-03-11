@@ -1,5 +1,5 @@
 import { VehicleBrandService } from './vehicle-brand.service';
-import { Args, Mutation, Query } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateVehicleBrandInput } from './inputs/create-vehicle-brand.input';
 import { VehicleBrandType } from './vehicle-brand.type';
 import { RoleEnum } from '../../auth/role/role.enum';
@@ -10,6 +10,7 @@ import { UpdateVehicleBrandInput } from './inputs/update-vehicle-brand.input';
 
 @UseGuards(GqlAuthGuard)
 @Roles(RoleEnum.Admin)
+@Resolver(() => VehicleBrandType)
 export class VehicleBrandResolver {
   constructor(private vehicleBrandService: VehicleBrandService) {}
 

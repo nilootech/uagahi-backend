@@ -1,8 +1,8 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { PaginationModelInput } from '../../../models/public/inputs/pagination.model.input';
-import { SortInput } from '../../../models/public/inputs/sort.input';
 import { MaxLength, MinLength } from 'class-validator';
 import { IDLength } from '../../../constants/index.constant';
+import { SortTicketModelInput } from './sort-ticket.model.input';
 
 @InputType()
 export class GetAllTicketInput {
@@ -18,11 +18,11 @@ export class GetAllTicketInput {
   @Field({ nullable: true })
   active?: boolean;
 
-  @Field()
+  @Field(() => [String], { nullable: true })
   @MaxLength(IDLength, { each: true })
   @MinLength(IDLength, { each: true })
   categories: string[];
 
-  @Field(() => [SortInput])
-  sorts: SortInput[];
+  @Field({ nullable: true })
+  sort: SortTicketModelInput;
 }
